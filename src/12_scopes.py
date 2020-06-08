@@ -5,9 +5,10 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
 
-change_x()
+changeX()
 
 # This prints 12. What do we have to modify in change_x() to get it to print 99?
 print(x)
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -30,3 +32,6 @@ def outer():
 
 
 outer()
+
+# so to print something on the outer part of the scope change nothing.. to print the new value of a variable deep into the function simple add nonlocal <variable here>
+
