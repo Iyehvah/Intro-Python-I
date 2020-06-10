@@ -26,22 +26,19 @@ This would mean that from the command line you would call `python3 14_cal.py 4 2
 print out a calendar for April in 2015, but if you omit either the year or both values, 
 it should use today’s date to get the month and year.
 """
- #sys argv
- #pull args from sys argv
+
+#review sys 
 import sys
 import calendar
 from datetime import datetime
 
 date = sys.argv[1:]
 
-if (len(date[0]) == 0):
-    # no input => current month + current year
+if (len(date[1:]) == 0):
     print(calendar.month(datetime.now().year, datetime.now().month))
 elif (len(date) == 1 and len(date[0]) <= 2):
-    # 1 input, size corresponds to month => current year
     print(calendar.month(datetime.now().year, int(date[0])))
 elif (len(date) == 2 and len(date[0]) <= 2 and len(date[1]) == 4):
-    # 2 inputs, 1st size corresponds to month, 2nd size corresponds to year
     print(calendar.month(int(date[1]), int(date[0])))
 else:
     print('Please enter month and year')
