@@ -26,24 +26,24 @@ This would mean that from the command line you would call `python3 14_cal.py 4 2
 print out a calendar for April in 2015, but if you omit either the year or both values, 
 it should use today’s date to get the month and year.
 """
-
+ #sys argv
+ #pull args from sys argv
 import sys
 import calendar
 from datetime import datetime
 
-y = input("Input the Year: ")
-m = input("Input the Month: ")
+date = sys.argv[1:]
 
-if(len(y) == 0 and len(m) == 0):
-    today = date.today()
-    print(calendar.month(today.year, today.month))
-elif(len(m) == 0 or len(y) == 0):
-    today = date.today()
-    if(len(y) == 0):
-        print(calendar.month(today.year, int(m)))
-    else:
-        print(calendar.month(int(y), today.month))
-elif(int(m) > 0 and 1000 <= int(y) <= 2020):
-    print(calendar.month(int(y), int(m)))
+if (len(date[0]) == 0):
+    # no input => current month + current year
+    print(calendar.month(datetime.now().year, datetime.now().month))
+elif (len(date) == 1 and len(date[0]) <= 2):
+    # 1 input, size corresponds to month => current year
+    print(calendar.month(datetime.now().year, int(date[0])))
+elif (len(date) == 2 and len(date[0]) <= 2 and len(date[1]) == 4):
+    # 2 inputs, 1st size corresponds to month, 2nd size corresponds to year
+    print(calendar.month(int(date[1]), int(date[0])))
 else:
-    print("Please enter a valid Month (00) and Year(2000-2020)")
+    print('Please enter month and year')
+
+input('Press ENTER to exit')
